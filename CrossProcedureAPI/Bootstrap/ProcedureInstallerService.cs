@@ -6,7 +6,7 @@ using System.Diagnostics.Contracts;
 
 namespace CrossProcedureAPI.Bootstrap
 {
-    public class ProcedureInstallerService : IProcedureInstallerService
+    public class ProcedureInstallerService
     {
         private readonly string _connectionString;
         private readonly string _scriptsDirectory;
@@ -89,6 +89,9 @@ namespace CrossProcedureAPI.Bootstrap
                 }
                 Console.ResetColor();
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"Stored procedure installation Completed.");
+            Console.ResetColor();
         }
     }
 }
