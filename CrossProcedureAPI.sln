@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossProcedureAPI", "CrossProcedureAPI\CrossProcedureAPI.csproj", "{9B4A2C95-54D9-4857-8706-D71E96AB481C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {308CE40B-EC31-4A63-9F16-302E3B973D5B}
+	EndGlobalSection
+EndGlobal
