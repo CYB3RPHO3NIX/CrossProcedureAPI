@@ -13,10 +13,18 @@ namespace CrossProcedureAPI.Controllers
             
         }
         [HttpGet]
-        public IActionResult GetData() 
+        public async Task<IActionResult> GetData() 
         {
-            
-            return Ok();
+            List<object> objs = new List<object>();
+            objs.Add(new { Name = "Jonathan", Age = 21 });
+            objs.Add(new { Friends = new List<object>() 
+            {
+                new { Name = "Maverick", Age = 25 },
+                new { Name = "David", Age = 27 },
+                new { Name = "Martinez", Age = 23 }
+            } });
+
+            return Ok(System.Text.Json.JsonSerializer.Serialize(objs));
         }
     }
 }
