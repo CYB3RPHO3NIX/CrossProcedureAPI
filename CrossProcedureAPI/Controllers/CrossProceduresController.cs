@@ -16,14 +16,7 @@ namespace CrossProcedureAPI.Controllers
         [HttpGet]
         public IActionResult GetData() 
         {
-            try
-            {
-                _procedureInstallerService.InstallAllProcedures();
-            }
-            catch(Exception ex)
-            {
-
-            }
+            
             return Ok();
         }
     }

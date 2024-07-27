@@ -17,11 +17,9 @@ namespace CrossProcedureAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IDataAccessService>(provider => new DataAccessService(connectionString));
-            builder.Services.AddScoped<IProcedureInstallerService>(provider => new ProcedureInstallerService(connectionString));
+            var bootstrap = new ProcedureInstallerService(connectionString);
 
             var app = builder.Build();
-
-            var res = GetFilesInFolder(Directory.GetCurrentDirectory()+"\\Scripts");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

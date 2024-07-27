@@ -8,8 +8,6 @@ namespace CrossProcedureAPI.Bootstrap
 {
     public class ProcedureInstallerService : IProcedureInstallerService
     {
-        public bool IsAllProceduresInstalled { get; private set; }
-
         private readonly string _connectionString;
         private readonly string _scriptsDirectory;
 
@@ -19,6 +17,7 @@ namespace CrossProcedureAPI.Bootstrap
             _connectionString = connectionString;
             _scriptsDirectory = Directory.GetCurrentDirectory() + "\\Scripts";
             InitializeScripts();
+            InstallAllProcedures();
         }
         
         private void ExecuteScript(string script)
@@ -39,7 +38,7 @@ namespace CrossProcedureAPI.Bootstrap
             _storedProcedures.Add(StoredProcedures.PROC_CountOf);
             _storedProcedures.Add(StoredProcedures.PROC_CrossProcedure);
             _storedProcedures.Add(StoredProcedures.PROC_ShouldContain);
-            _storedProcedures.Add(StoredProcedures.PROC_Equals);
+            _storedProcedures.Add(StoredProcedures.PROC_Equal);
             _storedProcedures.Add(StoredProcedures.PROC_LessThanOrEqualTo);
             _storedProcedures.Add(StoredProcedures.PROC_Range);
             _storedProcedures.Add(StoredProcedures.PROC_ShouldNotContain);
@@ -71,13 +70,24 @@ namespace CrossProcedureAPI.Bootstrap
         }
         public void InstallAllProcedures()
         {
-            foreach(var procedure in _storedProcedures) 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"Stored procedure installation started.");
+            Console.ResetColor();
+            foreach (var procedure in _storedProcedures) 
             {
                 if (!IsAlreadyExists(procedure.Split('.')[0].ToString()))
                 {
                     string script = ReadScripts(procedure);
                     ExecuteScript(script);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Procedure [{procedure.Split('.')[0].ToString()}] installed successfully.");
                 }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Procedure [{procedure.Split('.')[0].ToString()}] already exists.");
+                }
+                Console.ResetColor();
             }
         }
     }

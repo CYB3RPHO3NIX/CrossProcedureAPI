@@ -5,7 +5,7 @@
         public const string PROC_CountOf = "CountOf.sql";
         public const string PROC_CountOfRange = "CountOfRange.sql";
         public const string PROC_CrossProcedure = "CrossProcedure.sql";
-        public const string PROC_Equals = "Equals.sql";
+        public const string PROC_Equal = "Equal.sql";
         public const string PROC_GreaterThanOrEqualTo = "GreaterThanOrEqualTo.sql";
         public const string PROC_LessThanOrEqualTo = "LessThanOrEqualTo.sql";
         public const string PROC_NotEqual = "NotEqual.sql";
