@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossProcedureAPI", "CrossProcedureAPI\CrossProcedureAPI.csproj", "{9B4A2C95-54D9-4857-8706-D71E96AB481C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Consumer\Consumer.csproj", "{6774AA8A-E1C2-4135-9504-808C501A02BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4A2C95-54D9-4857-8706-D71E96AB481C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6774AA8A-E1C2-4135-9504-808C501A02BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6774AA8A-E1C2-4135-9504-808C501A02BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6774AA8A-E1C2-4135-9504-808C501A02BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6774AA8A-E1C2-4135-9504-808C501A02BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
