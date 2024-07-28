@@ -16,16 +16,22 @@ namespace CrossProcedureAPI.DataAccess
 
         public DataTable ExecuteStoredProcedure(string procedureName, DynamicParameters parameters)
         {
+            var dataTable = new DataTable();
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Open();
-                using (var reader = db.ExecuteReader(procedureName, parameters, commandType: CommandType.StoredProcedure))
+                try
                 {
-                    var dataTable = new DataTable();
-                    dataTable.Load(reader);
-                    return dataTable;
+                    using (var reader = db.ExecuteReader(procedureName, parameters, commandType: CommandType.StoredProcedure))
+                    {
+                        dataTable.Load(reader);
+                    }
+                } catch (Exception ex)
+                {
+                    
                 }
-            } 
+            }
+            return dataTable;
         }
     }
 }
