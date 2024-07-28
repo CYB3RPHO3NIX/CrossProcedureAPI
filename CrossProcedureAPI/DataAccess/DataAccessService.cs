@@ -17,6 +17,9 @@ namespace CrossProcedureAPI.DataAccess
         public DataTable ExecuteStoredProcedure(string procedureName, DynamicParameters parameters)
         {
             var dataTable = new DataTable();
+
+
+
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Open();
@@ -24,7 +27,15 @@ namespace CrossProcedureAPI.DataAccess
                 {
                     using (var reader = db.ExecuteReader(procedureName, parameters, commandType: CommandType.StoredProcedure))
                     {
-                        dataTable.Load(reader);
+                        if (reader.Read())
+                        {
+                            string firstResult = reader.GetString(0); // Assuming the first column is of type string
+                        }
+
+                        if (reader.NextResult() && reader.Read())
+                        {
+                            string secondResult = reader.GetString(0); // Assuming the first column is of type string
+                        }
                     }
                 } catch (Exception ex)
                 {

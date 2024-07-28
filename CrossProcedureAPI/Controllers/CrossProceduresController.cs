@@ -29,7 +29,7 @@ namespace CrossProcedureAPI.Controllers
             inputParams.Add("@PageSize", request.PageSize, System.Data.DbType.Int32, System.Data.ParameterDirection.Input);
             var data = _dataAccessService.ExecuteStoredProcedure("dbo.CrossProcedure", inputParams);
 
-            return Ok(System.Text.Json.JsonSerializer.Serialize(data));
+            return Ok();
         }
     }
 }

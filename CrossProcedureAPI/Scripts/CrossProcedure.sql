@@ -223,16 +223,16 @@ BEGIN
 	--Sort based on query
 	DECLARE @OffsetRows INT = (@PageNumber - 1) * @PageSize;
 
-	SET @SQL = 'SELECT * FROM dbo.FinalResults
+	SET @SQL = 'SELECT ( SELECT * FROM dbo.FinalResults
             ORDER BY ' + QUOTENAME(@SortColumn) + ' ' + @SortDirection + '
             OFFSET ' + CAST(@OffsetRows AS NVARCHAR(10)) + ' ROWS 
             FETCH NEXT ' + CAST(@PageSize AS NVARCHAR(10)) + ' ROWS ONLY 
-            FOR JSON PATH, INCLUDE_NULL_VALUES;';
+            FOR JSON PATH, INCLUDE_NULL_VALUES) AS QueryResult;';
 	--this gives main result.
 	EXEC sp_executesql @SQL;
 
 	--this gives count results.
-	SELECT * FROM @CountResults FOR JSON PATH, INCLUDE_NULL_VALUES;
+	SELECT (SELECT * FROM @CountResults FOR JSON PATH, INCLUDE_NULL_VALUES) AS CountResult;
 
 	--At the end Drop all the temp tables.
 	DROP TABLE dbo.TempIntersection;
