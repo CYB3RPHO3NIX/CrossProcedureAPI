@@ -12,23 +12,33 @@ namespace Consumer.Query
     public interface IQueryBuilder
     {
         IQueryBuilder SelectThis(string schemaName, string viewName);
+
         //Filters
         IQueryBuilder Equal(string columnName, List<string> values);
+
         IQueryBuilder GreaterThanOrEqualTo(string columnName, string value);
+
         IQueryBuilder LessThanOrEqualTo(string columnName, string value);
+
         IQueryBuilder NotEqual(string columnName, List<string> values);
+
         IQueryBuilder Range(string columnName, string lValue, string hValue);
+
         IQueryBuilder ShouldContain(string columnName, List<string> values);
+
         IQueryBuilder ShouldNotContain(string columnName, List<string> values);
 
         //Counts
         IQueryBuilder CountOf(string identifier, string columnName, string value);
+
         IQueryBuilder CountOfRange(string identifier, string columnName, string lValue, string hValue);
 
         //Sorting
         IQueryBuilder SortBy(string columnName, SortDirections sortDirection);
+
         string Build();
     }
+
     public class CrossProcedureQueryBuilder : IQueryBuilder
     {
         public JObject ObjectName { get; set; }
@@ -43,19 +53,19 @@ namespace Consumer.Query
             JObject rootObject = new JObject(
                 new JProperty("Object", ObjectName)
             );
-            if(Filters.Count > 0)
+            if (Filters.Count > 0)
             {
                 rootObject.Add(new JProperty("Query", Filters));
             }
-            if(CountQuery.Count > 0)
+            if (CountQuery.Count > 0)
             {
                 rootObject.Add(new JProperty("Count", CountQuery));
             }
-            if(Sorting.Count > 0) 
+            if (Sorting.Count > 0)
             {
                 rootObject.Add(new JProperty("Sort", Sorting));
             }
-            return rootObject.ToString();
+            return rootObject.ToString(formatting: Formatting.None);
         }
 
         public IQueryBuilder CountOf(string identifier, string columnName, string value)
@@ -67,7 +77,7 @@ namespace Consumer.Query
                 new JProperty("ColumnName", columnName),
                 new JProperty("Value", value)
             });
-            
+
             return this;
         }
 

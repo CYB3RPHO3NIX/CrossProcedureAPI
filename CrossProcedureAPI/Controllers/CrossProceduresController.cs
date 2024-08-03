@@ -4,6 +4,7 @@ using CrossProcedureAPI.Models;
 using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CrossProcedureAPI.Controllers
 {
@@ -12,14 +13,16 @@ namespace CrossProcedureAPI.Controllers
     public class CrossProceduresController : ControllerBase
     {
         private readonly IDataAccessService _dataAccessService;
+
         public CrossProceduresController(IServiceProvider serviceProvider)
         {
-            _dataAccessService = serviceProvider.GetRequiredService<IDataAccessService>(); 
+            _dataAccessService = serviceProvider.GetRequiredService<IDataAccessService>();
         }
+
         [HttpPost]
-        public async Task<IActionResult> GetData(DataRequest request) 
+        public async Task<IActionResult> GetData(DataRequest request)
         {
-            if(string.IsNullOrEmpty(request.RequestJson))
+            if (string.IsNullOrEmpty(request.RequestJson))
             {
                 return BadRequest();
             }
@@ -29,7 +32,8 @@ namespace CrossProcedureAPI.Controllers
             inputParams.Add("@PageSize", request.PageSize, System.Data.DbType.Int32, System.Data.ParameterDirection.Input);
             var data = _dataAccessService.ExecuteStoredProcedure("dbo.CrossProcedure", inputParams);
 
-            return Ok();
+            var result = new { data = JsonSerializer.Serialize(data.DataResult), counts = JsonSerializer.Serialize(data.CountResult) };
+            return Ok(result);
         }
     }
 }
